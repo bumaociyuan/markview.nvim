@@ -249,13 +249,14 @@ parser.parse_links = function (buffer)
 		return;
 	end
 
-    vim.treesitter.get_parser(buffer):parse(true);
 	local root_parser = vim.treesitter.get_parser(buffer);
 
 	if not root_parser then
 		-- Can't find root parser.
 		return parser.content, parser.sorted;
 	end
+
+	root_parser:parse(true);
 
 	---|fS "chore: Announce start of parsing"
 	---@type integer Start time
